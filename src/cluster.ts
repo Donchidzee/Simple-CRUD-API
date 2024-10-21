@@ -1,4 +1,3 @@
-// In src/cluster.ts
 import cluster from 'cluster';
 import os from 'os';
 import http from 'http';
@@ -17,7 +16,6 @@ const workers: number[] = [];
 if (cluster.isPrimary) {
   console.log(`Primary ${process.pid} is running`);
 
-  // Fork workers
   for (let i = 1; i <= numCPUs; i++) {
     const workerPort = PORT + i;
     cluster.fork({ PORT: workerPort });
@@ -26,7 +24,6 @@ if (cluster.isPrimary) {
 
   let currentWorker = 0;
 
-  // Load balancer
   const server = http.createServer((req, res) => {
     const workerPort = workers[currentWorker];
     currentWorker = (currentWorker + 1) % workers.length;
@@ -51,7 +48,6 @@ if (cluster.isPrimary) {
     console.log(`Load balancer running on port ${PORT}`);
   });
 } else {
-  // Workers
   const workerPort = Number(process.env.PORT);
   const server = http.createServer((req, res) => {
     router(req, res);

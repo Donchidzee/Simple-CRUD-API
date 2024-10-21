@@ -1,4 +1,3 @@
-// src/server.ts
 import http from 'http';
 import dotenv from 'dotenv';
 import { router } from './router';

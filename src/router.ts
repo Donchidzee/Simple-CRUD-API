@@ -1,4 +1,3 @@
-// src/router.ts
 import { IncomingMessage, ServerResponse } from 'http';
 import {
   getUsers,
@@ -26,7 +25,6 @@ export const router = (req: IncomingMessage, res: ServerResponse) => {
     const id = url.split('/')[3];
     deleteUser(req, res, id);
   } else {
-    // Handle non-existing endpoints
     res.writeHead(404, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ message: 'Endpoint not found' }));
   }
