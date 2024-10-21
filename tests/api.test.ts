@@ -1,4 +1,3 @@
-// tests/api.test.ts
 import { expect } from 'chai';
 import axios from 'axios';
 import http from 'http';
@@ -10,7 +9,6 @@ describe('Simple CRUD API Tests', function () {
   let baseURL: string;
 
   before((done) => {
-    // Start the server before running tests
     server = createServer();
     server.listen(0, () => {
       const address = server.address() as AddressInfo;
@@ -20,7 +18,6 @@ describe('Simple CRUD API Tests', function () {
   });
 
   after((done) => {
-    // Close the server after tests
     server.close(done);
   });
 
